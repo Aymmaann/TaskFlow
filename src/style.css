@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Nunito Sans", sans-serif;
+    /* background-color: #FCF6F5; */
+    background-color: #fdfdfc;
+}
+
+:root{
+    /* --main-color:#6400e4; */
+    --main-color:#CC313D;
+    --box-shadow:0px 3px 5px 0px rgba(0,0,0,0.34);
+    --hover-shadow:0px 4px 4px 0px rgba(3, 3, 3, 0.561);
+    --nav-shadow:0px 0px 10px 0px rgba(0,0,0,0.100);
+    --light-black:#141c3a;
+}
+
+body {
+    font-family: "Nunito Sans", sans-serif;
+}
+
+.container_login {
+    width: 35%;
+    margin: 125px auto;
+    padding: 3rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    /* background-image: url('assets/background.jpg') no-repeat; */
+}
+
+.navbar {
+    background-color: #CC313D;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.navbar .navbar-brand {
+    background-color: #CC313D;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.container_login .header {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 30px 0;
+}
+
+form label {
+    margin: 5px 0;
+}
+
+.formhehee {
+    background-color: #fdfdfc;
+}
+
+form input[type="text"], input[type="password"] {
+    height: 55px;
+    margin: 5px 0;
+    border: 0.5px solid #b8b8b85d;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 0 15px;
+    font-family: "Nunito Sans", sans-serif;
+    background-color: white;
+}
+
+form a {
+    margin: 10px 0;
+    text-decoration: none;
+    /* color: #6400e4; */
+    color: #CC313D;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+form input[type="submit"] {
+    height: 50px;
+    color: white;
+    /* background-color: #6400e4; */
+    background-color: #CC313D;
+    padding: 12px 0;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.25s ease;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    /* background-color: #6400e4; */
+    background-color: #CC313D;
+    box-shadow: var(--hover-shadow);
+    transform: translateY(-2px);
+}
+
+a {
+    text-decoration: none;
+    color: #CC313D;
+}
+
+.back-ground {
+    background-color: #fdfdfc;
+}
+
+.header {
+    padding-top: 20px;
+    background-color: #fdfdfc;
+}

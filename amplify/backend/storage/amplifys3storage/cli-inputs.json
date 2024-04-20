@@ -1,0 +1,12 @@
+{
+  "resourceName": "amplifys3storage",
+  "policyUUID": "ccb328f0",
+  "bucketName": "amplify-taskflow-s3",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
