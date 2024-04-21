@@ -3,12 +3,10 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Nunito Sans", sans-serif;
-    /* background-color: #FCF6F5; */
     background-color: #fdfdfc;
 }
 
 :root{
-    /* --main-color:#6400e4; */
     --main-color:#CC313D;
     --box-shadow:0px 3px 5px 0px rgba(0,0,0,0.34);
     --hover-shadow:0px 4px 4px 0px rgba(3, 3, 3, 0.561);
@@ -27,7 +25,6 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-    /* background-image: url('assets/background.jpg') no-repeat; */
 }
 
 .navbar {
@@ -75,7 +72,6 @@ form input[type="text"], input[type="password"] {
 form a {
     margin: 10px 0;
     text-decoration: none;
-    /* color: #6400e4; */
     color: #CC313D;
     font-weight: bold;
     font-size: 15px;
@@ -84,7 +80,6 @@ form a {
 form input[type="submit"] {
     height: 50px;
     color: white;
-    /* background-color: #6400e4; */
     background-color: #CC313D;
     padding: 12px 0;
     font-size: 20px;
@@ -96,7 +91,6 @@ form input[type="submit"] {
 }
 
 form input[type="submit"]:hover {
-    /* background-color: #6400e4; */
     background-color: #CC313D;
     box-shadow: var(--hover-shadow);
     transform: translateY(-2px);

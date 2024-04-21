@@ -7,7 +7,7 @@ import { FaPhone } from 'react-icons/fa';
 import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router';
 import { MdDeveloperMode } from 'react-icons/md';
-import { Link } from 'react-router-dom'; // Step 1: Import Link
+import { Link } from 'react-router-dom'; 
 
 const S3_BUCKET = 'amplify-taskflow-s3966b3-dev';
 const REGION = 'eu-north-1';
@@ -23,7 +23,7 @@ const myBucket = new AWS.S3({
 });
 
 const App = () => {
-  const { auth, logout } = useAuth(); // Step 2: Use useAuth hook to access logout function
+  const { auth, logout } = useAuth(); 
   const nav = useNavigate();
   const [progress, setProgress] = useState(0);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -54,7 +54,7 @@ const App = () => {
       ACL: 'public-read',
       Body: file,
       Bucket: S3_BUCKET,
-      Key: `${auth.email}/${file.name}`, // Upload file to a folder named after the user's email address
+      Key: `${auth.email}/${file.name}`, 
     };
   
     setIsLoading(true);
@@ -100,7 +100,6 @@ const App = () => {
             <div className="upload-progress file-details">
               <br />
               <div className="spinner file-details"></div>
-              {/* <h3 className="file-details">Uploading...</h3> */}
               <h3 className="file-details">Progress: {progress}%</h3>
             </div>
           )}
@@ -224,7 +223,7 @@ const App = () => {
     try {
       const fileContent = await myBucket.getObject({ Bucket: S3_BUCKET, Key: fileName }).promise();
       const zip = new JSZip();
-      zip.file(fileName.split('/').pop(), fileContent.Body); // Use only the file name without the user's directory
+      zip.file(fileName.split('/').pop(), fileContent.Body); 
       const content = await zip.generateAsync({ type: 'blob' });
       const compressedFileName = `${fileName.split('/').pop()}.zip`; // Include .zip extension
       const compressedFile = new File([content], compressedFileName, { type: 'application/zip' });

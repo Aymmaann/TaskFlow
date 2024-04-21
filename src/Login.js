@@ -11,7 +11,7 @@ const Login = () => {
         email: "",
         password: ""
     });
-    const { login } = useAuth(); // Access the login function from the AuthContext
+    const { login } = useAuth(); 
     const nav = useNavigate();
 
     const emailRef = useRef(null);
