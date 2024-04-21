@@ -1,19 +1,29 @@
 import { createContext, useContext, useState } from "react";
 
-const AuthContext = createContext()
+const AuthContext = createContext();
 
-export const AuthProvider = ({children}) => {
-    const [auth, setAuth] = useState(false)
+export const AuthProvider = ({ children }) => {
+    const [auth, setAuth] = useState(null); // Initialize auth as null
 
-    return <AuthContext.Provider value={{auth, setAuth}}>
-        {children}
-    </AuthContext.Provider>
-}
+    const login = (email) => {
+        setAuth({ email }); // Set auth to an object with the user's email
+    };
 
-export const useAuth = () =>{ 
-    const context = useContext(AuthContext)
+    const logout = () => {
+        setAuth(null); // Reset auth to null on logout
+    };
+
+    return (
+        <AuthContext.Provider value={{ auth, login, logout, setAuth }}>
+            {children}
+        </AuthContext.Provider>
+    );
+};
+
+export const useAuth = () => {
+    const context = useContext(AuthContext);
     if (context === undefined) {
-        throw new Error("usePrompt must be used within a PromptProvider");
-      }
-      return context;
-}
+        throw new Error("useAuth must be used within an AuthProvider");
+    }
+    return context;
+};

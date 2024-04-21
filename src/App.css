@@ -14,6 +14,9 @@
   background-color: #CC313D;
   color: #fff;
   padding: 10px 20px;
+  display: flex;
+  justify-content: space-between; /* Align items to the start and end of the navbar */
+  align-items: center;
 }
 
 .navbar-brand {
@@ -33,6 +36,23 @@
   padding-top: 3px;
   font-size: 25px;
 }
+
+.navbar-nav {
+  list-style: none;
+}
+
+.nav-link {
+  background-color: #CC313D; 
+  color: #fff;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.nav-link:hover {
+  color:  #e0e0e0;
+}
+
+.nav-border {}
 
 .container {
   max-width: 500px;

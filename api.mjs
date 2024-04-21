@@ -25,7 +25,8 @@ app.post("/register", async (req, res) => {
             id: Math.random().toLocaleString(),
             name,
             email,
-            password: hashPass
+            password: hashPass,
+            uploadedFiles: [] // Initialize the uploadedFiles array
         };
         console.log("User", user);
 

@@ -7,13 +7,14 @@ import { FaPhone } from 'react-icons/fa';
 import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router';
 import { MdDeveloperMode } from 'react-icons/md';
+import { Link } from 'react-router-dom'; // Step 1: Import Link
 
 const S3_BUCKET = 'amplify-taskflow-s3966b3-dev';
 const REGION = 'eu-north-1';
 
 AWS.config.update({
-  accessKeyId: process.env.local.ACCESS_KEY,
-  secretAccessKey: process.env.local.SECRET_ACCESS_KEY
+  accessKeyId: process.env.REACT_APP_ACCESS_KEY,
+  secretAccessKey: process.env.REACT_APP_SECRET_ACCESS_KEY
 })
 
 const myBucket = new AWS.S3({
@@ -22,12 +23,18 @@ const myBucket = new AWS.S3({
 });
 
 const App = () => {
-  const { auth } = useAuth();
+  const { auth, logout } = useAuth(); // Step 2: Use useAuth hook to access logout function
   const nav = useNavigate();
   const [progress, setProgress] = useState(0);
   const [selectedFile, setSelectedFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [fileList, setFileList] = useState([]);
+
+  useEffect(() => {
+    if (!auth) {
+      nav('/login');
+    }
+  }, [auth]);
 
   useEffect(() => {
     fetchFileList();
@@ -37,22 +44,21 @@ const App = () => {
     setSelectedFile(e.target.files[0]);
   };
 
-  useEffect(() => {
-    if (!auth) {
-      nav('/login');
-    }
-  }, [auth]);
-
   const uploadFile = async (file) => {
+    if (!auth.email) {
+      console.error('User email is undefined');
+      return;
+    }
+  
     const params = {
       ACL: 'public-read',
       Body: file,
       Bucket: S3_BUCKET,
-      Key: file.name,
+      Key: `${auth.email}/${file.name}`, // Upload file to a folder named after the user's email address
     };
-
+  
     setIsLoading(true);
-
+  
     try {
       await myBucket
         .putObject(params)
@@ -67,11 +73,20 @@ const App = () => {
       setIsLoading(false);
     }
   };
+  
 
   const fetchFileList = async () => {
     try {
       const data = await myBucket.listObjectsV2({}).promise();
-      setFileList(data.Contents);
+      // Filter files to display only files uploaded by the logged-in user
+      const filteredFiles = data.Contents.filter((file) =>
+        file.Key.startsWith(auth.email + '/')
+      ).map((file) => {
+        // Remove the user's email prefix from the file name
+        const fileName = file.Key.split('/').slice(1).join('/');
+        return { ...file, fileName };
+      });
+      setFileList(filteredFiles);
     } catch (error) {
       console.error('Error fetching file list:', error);
     }
@@ -111,21 +126,7 @@ const App = () => {
     }
   };
 
-  const compressFile = async (fileName) => {
-    try {
-      const fileContent = await myBucket.getObject({ Bucket: S3_BUCKET, Key: fileName }).promise();
-      const zip = new JSZip();
-      zip.file(fileName, fileContent.Body);
-      const content = await zip.generateAsync({ type: 'blob' });
-      const compressedFile = new File([content], `${fileName}.zip`, { type: 'application/zip' });
-      await uploadFile(compressedFile);
-    } catch (error) {
-      console.error('Error compressing file:', error);
-    }
-  };
-
   const renderFileList = () => {
-    // Sort the fileList array by LastModified in descending order
     const sortedFileList = fileList.sort((a, b) => {
       return new Date(b.LastModified) - new Date(a.LastModified);
     });
@@ -152,29 +153,28 @@ const App = () => {
             </thead>
             <tbody>
               {sortedFileList.map((file, index) => (
-                <tr key={index}>
-                  <td>{file.Key}</td>
-                  <td>
-                    <button onClick={() => downloadFile(file.Key)}>Download</button>
-                  </td>
-                  <td>
-                    <button onClick={() => deleteFile(file.Key)}>Delete</button>
-                  </td>
-                  <td>
-                    <button onClick={() => updateFile(file.Key)}>Update</button>
-                  </td>
-                  <td>
-                    <button onClick={() => compressFile(file.Key)}>Compress</button>
-                  </td>
-                </tr>
-              ))}
+              <tr key={index}>
+                <td>{file.fileName}</td>
+                <td>
+                  <button onClick={() => downloadFile(file.Key)}>Download</button>
+                </td>
+                <td>
+                  <button onClick={() => deleteFile(file.Key)}>Delete</button>
+                </td>
+                <td>
+                  <button onClick={() => updateFile(file.Key)}>Update</button>
+                </td>
+                <td>
+                  <button onClick={() => compressFile(file.Key)}>Compress</button>
+                </td>
+              </tr>
+            ))}
             </tbody>
           </table>
         </div>
       );
     }
   };
-  
 
   const downloadFile = async (fileName) => {
     try {
@@ -187,9 +187,12 @@ const App = () => {
 
   const deleteFile = async (fileName) => {
     try {
+      // Extract the file name from the full path
+      const fileNameOnly = fileName.split('/').pop();
+  
       await myBucket.deleteObject({ Bucket: S3_BUCKET, Key: fileName }).promise();
       fetchFileList(); 
-      alert(`${fileName} has been successfully deleted!`);
+      alert(`${fileNameOnly} has been successfully deleted!`); // Display only the file name
     } catch (error) {
       console.error('Error deleting file:', error);
     }
@@ -199,19 +202,35 @@ const App = () => {
     try {
       const newFileName = prompt('Enter new file name:');
       if (newFileName) {
+        const userEmail = fileName.split('/')[0]; 
+        const newKey = `${userEmail}/${newFileName}`; 
         await myBucket
           .copyObject({
             Bucket: S3_BUCKET,
             CopySource: `${S3_BUCKET}/${fileName}`,
-            Key: newFileName,
+            Key: newKey,
           })
           .promise();
         await myBucket.deleteObject({ Bucket: S3_BUCKET, Key: fileName }).promise();
         fetchFileList(); // Update file list after update
-        alert(`${fileName} has been renamed to ${newFileName}`);
+        alert(`${fileName.split('/').pop()} has been renamed to ${newFileName}`);
       }
     } catch (error) {
       console.error('Error updating file:', error);
+    }
+  };
+
+  const compressFile = async (fileName) => {
+    try {
+      const fileContent = await myBucket.getObject({ Bucket: S3_BUCKET, Key: fileName }).promise();
+      const zip = new JSZip();
+      zip.file(fileName.split('/').pop(), fileContent.Body); // Use only the file name without the user's directory
+      const content = await zip.generateAsync({ type: 'blob' });
+      const compressedFileName = `${fileName.split('/').pop()}.zip`; // Include .zip extension
+      const compressedFile = new File([content], compressedFileName, { type: 'application/zip' });
+      await uploadFile(compressedFile);
+    } catch (error) {
+      console.error('Error compressing file:', error);
     }
   };
 
@@ -224,6 +243,13 @@ const App = () => {
             TaskFlow
           </h1>
         </div>
+        <ul className="navbar-nav">
+          <li className="nav-item">
+            <div className='nav-border'>
+              <Link to="/login" onClick={logout} className="nav-link">Sign Out</Link> 
+            </div>
+          </li>
+        </ul>
       </nav>
       <div className="container">
         <h1 className="main_header">TaskFlow</h1>

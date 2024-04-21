@@ -11,9 +11,8 @@ const Login = () => {
         email: "",
         password: ""
     });
-    const [error, setError] = useState("");
+    const { login } = useAuth(); // Access the login function from the AuthContext
     const nav = useNavigate();
-    const { auth, setAuth } = useAuth();
 
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
@@ -52,7 +51,7 @@ const Login = () => {
     
         const fetchedData = await res.json();
         console.log("Login successful", fetchedData);
-        setAuth(true);
+        login(data.email); // Set the authentication state with the user's email
         nav("/");
     };
       
@@ -75,8 +74,6 @@ const Login = () => {
             <div className="header">
                 <h1>Login to TaskFlow</h1>
             </div>
-
-            {error && <div className="error-message">{error}</div>}
 
             <form className="formhehee" onSubmit={handleSubmit}>
                 <label htmlFor="email" className="email_header">Email</label>
