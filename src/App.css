@@ -11,7 +11,7 @@
 }
 
 .navbar {
-  background-color: #CC313D;
+  background-color: #CC313D; 
   color: #fff;
   padding: 10px 20px;
   display: flex;
@@ -28,7 +28,7 @@
 .navbar-name {
   font-weight: 900;
   font-size: 30px;
-  background-color: #CC313D;
+  background-color: #CC313D; 
 }
 
 .navbar-logo {
