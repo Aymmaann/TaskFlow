@@ -7,7 +7,6 @@ import { FaPhone } from 'react-icons/fa';
 import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router';
 import { MdDeveloperMode } from 'react-icons/md';
-import { Link } from 'react-router-dom'; 
 
 const S3_BUCKET = 'amplify-taskflow-s3966b3-dev';
 const REGION = 'eu-north-1';
