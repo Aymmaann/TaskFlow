@@ -41,18 +41,9 @@
   list-style: none;
 }
 
-.nav-link {
-  background-color: #CC313D; 
-  color: #fff;
-  font-size: 20px;
-  font-weight: 800;
+.nav-border {
+  background-color: #CC313D;
 }
-
-.nav-link:hover {
-  color:  #e0e0e0;
-}
-
-.nav-border {}
 
 .container {
   max-width: 500px;
@@ -387,6 +378,18 @@ button {
 
 button:hover {
   background-color: #45a049;
+}
+
+#nav-link {
+  background-color: #CC313D; 
+  color: #fff;
+  font-size: 20px;
+  font-weight: 800;
+  border: none;
+}
+
+#nav-link:hover {
+  color:  #e0e0e0;
 }
 
 @keyframes spin {

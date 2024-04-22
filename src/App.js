@@ -40,6 +40,11 @@ const App = () => {
     fetchFileList();
   }, []);
 
+  const actualLogout = () => {
+    logout()
+    nav("/login")
+  }
+
   const handleFileInput = (e) => {
     setSelectedFile(e.target.files[0]);
   };
@@ -245,7 +250,7 @@ const App = () => {
         <ul className="navbar-nav">
           <li className="nav-item">
             <div className='nav-border'>
-              <Link to="/login" onClick={logout} className="nav-link">Sign Out</Link> 
+              <button onClick={actualLogout} id="nav-link">Sign Out</button> 
             </div>
           </li>
         </ul>
