@@ -1,4 +1,0 @@
-This is just a test file
-This is a cloud project
-Aimed to use s3 buckets for
-file storage.
