@@ -1,3 +1,4 @@
+
 /* App.css */
 * {
   background-color: #fdfdfc;
@@ -5,22 +6,23 @@
 }
 
 .BackGround-image {
-  background: url('assets/background1.jpg') no-repeat;
+  background: url('assets/background.jpg') no-repeat;
   background-size: cover; 
   background-position: center;
 }
 
 .navbar {
-  background-color: #CC313D; 
+  background-color: #800000;
   color: #fff;
   padding: 10px 20px;
   display: flex;
   justify-content: space-between; 
   align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 .navbar-brand {
-  background-color: #CC313D;
+  background-color: #800000;
   display: flex;
   align-items: center;
 }
@@ -28,11 +30,11 @@
 .navbar-name {
   font-weight: 900;
   font-size: 30px;
-  background-color: #CC313D; 
+  background-color: #800000;
 }
 
 .navbar-logo {
-  background-color: #CC313D;
+  background-color: #800000;
   padding-top: 3px;
   font-size: 25px;
 }
@@ -42,7 +44,7 @@
 }
 
 .nav-border {
-  background-color: #CC313D;
+  background-color: #800000;
 }
 
 .container {
@@ -95,7 +97,7 @@ h3 {
 }
 
 .upload-btn {
-  background-color: #CC313D;
+  background-color: #800000;
   color: #fff;
   border: none;
   padding: 7px 25px;
@@ -110,7 +112,7 @@ h3 {
 }
 
 .upload-btn:hover {
-  background-color: #CC313D;
+  background-color: #800000;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
@@ -137,15 +139,15 @@ h3 {
 .footer {
   margin-top: 100px;
   padding: 30px;
-  background-color: #CC313D;
+  background-color: #800000;
 }
 
 .footer-form {
-  background-color: #CC313D;
+  background-color: #800000;
 }
 
 .row {
-  background-color: #CC313D;
+  background-color: #800000;
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
@@ -153,7 +155,7 @@ h3 {
 }
 
 form {
-  background-color: #CC313D;
+  background-color: #800000;
 }
 
 form input {
@@ -175,7 +177,7 @@ input[type="email"] {
 }
 
 .contact-left p{
-  background-color: #CC313D;
+  background-color: #800000;
   margin-top: 30px;
   margin-left: 60px;
   font-size: 20px;
@@ -188,7 +190,7 @@ input[type="email"] {
 }
 
 .contact-left h1 {
-  background-color: #CC313D;
+  background-color: #800000;
   color: #fff;
   font-weight: 900;
   font-size: 50px;
@@ -199,7 +201,7 @@ input[type="email"] {
 }
 
 .contact-left {
-  background-color: #CC313D;
+  background-color: #800000;
   flex-basis: 35%;
 }
 
@@ -211,13 +213,13 @@ input[type="email"] {
 }
 
 .footer-icon {
-  background-color: #CC313D;
+  background-color: #800000;
   font-size: 25px;
   margin-right: 10px;
 }
 
 .contact-right {
-  background-color: #CC313D;
+  background-color: #800000;
   flex-basis: 60%;
 }
 
@@ -225,7 +227,7 @@ input[type="email"] {
   display: inline-block;
   padding: 14px 60px;
   background: #f9f9f9;
-  color: #CC313D;
+  color: #800000;
   text-decoration: none;
   border-radius: 40px;
   font-size: 18px;
@@ -381,15 +383,16 @@ button:hover {
 }
 
 #nav-link {
-  background-color: #CC313D; 
+  background-color: #800000;
   color: #fff;
   font-size: 20px;
   font-weight: 800;
-  border: none;
+  border: 1px solid white;
+  transition: 0.25s;
 }
 
 #nav-link:hover {
-  color:  #e0e0e0;
+  background-color: #ab0000;
 }
 
 @keyframes spin {

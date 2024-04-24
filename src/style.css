@@ -7,7 +7,7 @@
 }
 
 :root{
-    --main-color:#CC313D;
+    --main-color:#800000;
     --box-shadow:0px 3px 5px 0px rgba(0,0,0,0.34);
     --hover-shadow:0px 4px 4px 0px rgba(3, 3, 3, 0.561);
     --nav-shadow:0px 0px 10px 0px rgba(0,0,0,0.100);
@@ -28,13 +28,15 @@ body {
 }
 
 .navbar {
-    background-color: #CC313D;
+    /* background-color: #CC313D; */
+    background-color: #800000;
     color: #fff;
     padding: 10px 20px;
 }
 
 .navbar .navbar-brand {
-    background-color: #CC313D;
+    /* background-color: #CC313D; */
+    background-color: #800000;
     font-size: 24px;
     font-weight: bold;
 }
@@ -61,7 +63,7 @@ form label {
 form input[type="text"], input[type="password"] {
     height: 55px;
     margin: 5px 0;
-    border: 0.5px solid #b8b8b85d;
+    border: 0.5px solid #8e8e8e5d;
     border-radius: 5px;
     font-size: 18px;
     padding: 0 15px;
@@ -80,7 +82,8 @@ form a {
 form input[type="submit"] {
     height: 50px;
     color: white;
-    background-color: #CC313D;
+    /* background-color: #CC313D; */
+    background-color: #800000;
     padding: 12px 0;
     font-size: 20px;
     border: none;
@@ -91,14 +94,15 @@ form input[type="submit"] {
 }
 
 form input[type="submit"]:hover {
-    background-color: #CC313D;
+    /* background-color: #CC313D; */
+    background-color: #800000;
     box-shadow: var(--hover-shadow);
     transform: translateY(-2px);
 }
 
 a {
     text-decoration: none;
-    color: #CC313D;
+    color: #800000;
 }
 
 .back-ground {
