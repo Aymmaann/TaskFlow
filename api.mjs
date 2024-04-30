@@ -9,6 +9,10 @@ app.use(cors());
 
 const users = []; // This array will store user data temporarily in-memory
 
+app.get("/", (req, res) => {
+    res.send("API is working!");
+});
+
 app.post("/register", async (req, res) => {
     try {
         const { name, email, password } = req.body;
