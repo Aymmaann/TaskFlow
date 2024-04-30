@@ -36,7 +36,7 @@ const Login = () => {
             return; 
         }
     
-        const res = await fetch("http://localhost:8000/login", {
+        const res = await fetch("http://ec2-54-242-42-249.compute-1.amazonaws.com:8000/login", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {

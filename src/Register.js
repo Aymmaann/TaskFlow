@@ -49,7 +49,7 @@ const Register = () => {
             return;
         }
     
-        const res = await fetch("http://localhost:8000/register", {
+        const res = await fetch("http://ec2-54-242-42-249.compute-1.amazonaws.com:8000/register", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
