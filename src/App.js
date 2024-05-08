@@ -8,8 +8,8 @@ import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router';
 import { MdDeveloperMode } from 'react-icons/md';
 
-const S3_BUCKET = 'amplify-taskflow-s3966b3-dev';
-const REGION = 'eu-north-1';
+const S3_BUCKET = process.env.BUCKET_NAME;
+const REGION = process.env.REGION_NAME;
 
 AWS.config.update({
   accessKeyId: process.env.REACT_APP_ACCESS_KEY,
