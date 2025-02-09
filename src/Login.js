@@ -68,11 +68,11 @@ const Login = () => {
         <>
         <div className="BackGround-image">
         <nav className="navbar">
-            <div className="navbar-brand"><MdDeveloperMode className='navbar-logo'/>TaskFlow</div>
+            <div className="navbar-brand"><MdDeveloperMode className='navbar-logo'/>CloudFilePro</div>
         </nav>
         <div className="container_login back-ground">
             <div className="header">
-                <h1>Login to TaskFlow</h1>
+                <h1>Login to CloudFilePro</h1>
             </div>
 
             <form className="formhehee" onSubmit={handleSubmit}>
