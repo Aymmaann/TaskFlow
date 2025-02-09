@@ -243,7 +243,7 @@ const App = () => {
         <div className="navbar-brand">
           <h1 className="navbar-name">
             <MdDeveloperMode className="navbar-logo" />
-            TaskFlow
+            CloudFilePro
           </h1>
         </div>
         <ul className="navbar-nav">
