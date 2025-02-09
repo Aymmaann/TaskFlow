@@ -7,7 +7,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const users = []; // This array will store user data temporarily in-memory
+const users = []; 
 
 app.get("/", (req, res) => {
     res.send("API is working!");
@@ -30,7 +30,7 @@ app.post("/register", async (req, res) => {
             name,
             email,
             password: hashPass,
-            uploadedFiles: [] // Initialize the uploadedFiles array
+            uploadedFiles: [] 
         };
         console.log("User", user);
 
